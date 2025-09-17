@@ -1,0 +1,195 @@
+<html>
+<head>
+  <title>Famous Indian Travel Destinations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fff8f0;
+    }
+    h1 {
+      color: #b22222;
+    }
+    select {
+      padding: 10px;
+      width: 320px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: left;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .gallery img {
+      width: 280px;
+      height: 190px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Famous Indian Travel Destinations</h1>
+  <p>Select a place to see information & images:</p>
+
+  <select id="destination" onchange="findDestination()">
+    <option value="">--Choose a destination--</option>
+    <option value="agra">Agra</option>
+    <option value="jaipur">Jaipur</option>
+    <option value="delhi">Delhi</option>
+    <option value="mumbai">Mumbai</option>
+    <option value="goa">Goa</option>
+    <option value="kerala">Kerala</option>
+    <option value="varanasi">Varanasi</option>
+    <option value="ladakh">Ladakh</option>
+    <option value="hyderabad">Hyderabad</option>
+    <option value="amritsar">Amritsar</option>
+  </select>
+
+  <div id="result"></div>
+
+  <script>
+    const destinations = {
+      "agra": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Agra_Fort.JPG"
+        ],
+        info: `
+          <h2>Agra</h2>
+          <p>Agra is home to the Taj Mahal, a UNESCO World Heritage Site and one of the Seven Wonders of the World. The city also boasts the Agra Fort and Fatehpur Sikri, making it a hub of Mughal history.</p>
+          <ul>
+            <li><b>📍 Location:</b> Uttar Pradesh</li>
+            <li><b>🏛️ Attractions:</b> Taj Mahal, Agra Fort, Fatehpur Sikri</li>
+            <li><b>🕒 Best Time:</b> Oct–Mar</li>
+          </ul>
+        `
+      },
+      "jaipur": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/9/9a/Hawa_Mahal_in_Jaipur_2011.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f5/Amber_Fort_Jaipur.jpg"
+        ],
+        info: `
+          <h2>Jaipur</h2>
+          <p>The 'Pink City' is Rajasthan’s capital, famous for forts, palaces, and colorful bazaars. Part of the Golden Triangle circuit.</p>
+          <ul>
+            <li><b>📍 Location:</b> Rajasthan</li>
+            <li><b>🏛️ Attractions:</b> Hawa Mahal, Amber Fort, City Palace</li>
+            <li><b>🕒 Best Time:</b> Nov–Feb</li>
+          </ul>
+        `
+      },
+      "delhi": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/c/c0/India_Gate_in_New_Delhi_03-2016_img3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/0f/Red_Fort_in_Delhi_03-2016_img3.jpg"
+        ],
+        info: `
+          <h2>Delhi</h2>
+          <p>India’s capital city blends Mughal history with modern culture. It’s full of monuments, bustling markets, and street food.</p>
+          <ul>
+            <li><b>📍 Location:</b> Delhi NCR</li>
+            <li><b>🏛️ Attractions:</b> Red Fort, Qutub Minar, India Gate, Lotus Temple</li>
+            <li><b>🕒 Best Time:</b> Oct–Mar</li>
+          </ul>
+        `
+      },
+      "mumbai": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Gateway_of_India_Mumbai.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f0/Marine_Drive_Mumbai.jpg"
+        ],
+        info: `
+          <h2>Mumbai</h2>
+          <p>Mumbai, the 'City of Dreams', is India’s financial hub and Bollywood capital. It mixes colonial architecture with modern skyscrapers.</p>
+          <ul>
+            <li><b>📍 Location:</b> Maharashtra</li>
+            <li><b>🏛️ Attractions:</b> Gateway of India, Marine Drive, Elephanta Caves</li>
+            <li><b>🕒 Best Time:</b> Nov–Feb</li>
+          </ul>
+        `
+      },
+      "goa": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/4/46/Goa_Beach.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Chapora_Fort_Goa.jpg"
+        ],
+        info: `
+          <h2>Goa</h2>
+          <p>Goa is India’s beach paradise with Portuguese heritage, vibrant nightlife, and serene churches.</p>
+          <ul>
+            <li><b>📍 Location:</b> Western India</li>
+            <li><b>🏖️ Attractions:</b> Baga Beach, Fort Aguada, Basilica of Bom Jesus</li>
+            <li><b>🕒 Best Time:</b> Nov–Feb</li>
+          </ul>
+        `
+      },
+      "kerala": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Kerala_backwaters_houseboat.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e9/Munnar_hillstation_kerala.jpg"
+        ],
+        info: `
+          <h2>Kerala</h2>
+          <p>Known as 'God’s Own Country', Kerala is famous for backwaters, ayurveda, and lush greenery.</p>
+          <ul>
+            <li><b>📍 Location:</b> South India</li>
+            <li><b>🏛️ Attractions:</b> Alleppey backwaters, Munnar, Kovalam</li>
+            <li><b>🕒 Best Time:</b> Oct–Feb</li>
+          </ul>
+        `
+      },
+      "varanasi": {
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/0/00/Varanasi_ghat.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/73/Kashi_Vishwanath_Temple_Varanasi.jpg"
+        ],
+        info: `
+          <h2>Varanasi</h2>
+          <p>One of the world’s oldest cities, Varanasi is India’s spiritual capital, famous for its ghats and temples.</p>
+          <ul>
+            <li><b>📍 Location:</b> Uttar Pradesh</li>
+            <li><b>🏛️ Attractions:</b> Ganga Ghats, Kashi Vishwanath Temple</li>
+            <li><b>🕒 Best Time:</b> Oct–Mar</li>
+          </ul>
+        `
+      }
+    };
+
+    function findDestination() {
+      const place = document.getElementById("destination").value;
+      const resultDiv = document.getElementById("result");
+
+      if (place && destinations[place]) {
+        const data = destinations[place];
+        resultDiv.innerHTML = data.info +
+          `<div class="gallery">` +
+          data.images.map(img => `<img src="${img}" alt="">`).join('') +
+          `</div>`;
+      } else {
+        resultDiv.innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html> 
+ 
+ 
+ 
