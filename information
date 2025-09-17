@@ -1,0 +1,50 @@
+Travel Guide Website – Project Documentation
+This is a Tourism Website for India created using HTML, CSS, and JavaScript.
+It provides an interactive way to explore famous travel destinations across India.
+The website is lightweight, user-friendly, and works in any browser without the need for a database or server.
+Purpose of the Website
+1.To educate and inform users about India’s popular tourist destinations.
+2.To give basic travel guidance (location, attractions, best time to visit).
+3.To help tourists plan trips by showing images and details of places.
+4.To serve as a practice project for beginners learning web development.
+Features of the Website
+Dropdown menu with list of famous Indian cities/places.Instant display of information when a place is selected.Image gallery for each destination (two or more pictures).
+Clean design with styled cards and shadows for readability.Works fully offline — no internet required except for images.Easy to extend — you can add more destinations in JavaScript.
+How It Works (Process Flow)
+Step 1 – User Input
+The user selects a place from the dropdown menu.
+Step 2 – JavaScript Function
+A function findDestination() runs automatically.
+It checks which place was chosen.
+It finds the matching entry in the destinations object.
+Step 3 – Data Display
+That entry contains:Text info (description + travel details).
+Image URLs.
+JavaScript then injects this data into the <div id="result">.
+Step 4 – Output to User
+The user sees a formatted card with:
+Place name
+Short description
+Bullet list of travel details
+Image gallery
+Technologies Used
+HTML – For structure (dropdown, content area).
+CSS – For styling (colors, fonts, gallery layout).
+JavaScript – For interactivity (displaying data based on selection).
+Example Use Case
+A tourist from another country visits the site and selects Agra.
+The website instantly shows:Information about Taj Mahal,Other attractions like Agra Fort, Fatehpur Sikri,Best time to visit (Oct–Mar),Images of monuments,
+This helps them decide their travel plan quickly.
+Advantages of the Website
+Simple and beginner-friendly.
+Does not need a backend database.
+Quick and responsive (loads instantly).
+Can be expanded into a full tourism website by adding:
+Maps
+Travel packages
+Booking options
+User reviews
+ Future Improvements
+Add search bar (type a place name instead of dropdown).Add more images per place in a slideshow format.
+Use an API (like Wikipedia/Google Places) to fetch live info.Make it mobile-friendly with responsive design.
+Add state-wise categories (North India, South India, etc.).
